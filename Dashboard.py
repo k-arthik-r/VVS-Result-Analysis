@@ -187,33 +187,33 @@ col7, col8 = st.columns(2)
 
 with col7:
     container7_1 = st.container(border=True)
-    container7_1.write("Rank 1")
+    container7_1.write(f"Rank {0+1}")
     container7_1.write(f"**{top_3_students.iloc[0]['Name']}**")   
     container7_1.write(f"**{top_3_students.iloc[0]['Percentage']}**")
 
     container7_2 = st.container(border=True)
-    container7_2.write("Rank 2")
+    container7_2.write(f"Rank {0+2}")
     container7_2.write(f"**{top_3_students.iloc[1]['Name']}**")   
     container7_2.write(f"**{top_3_students.iloc[1]['Percentage']}**")
 
     container7_3 = st.container(border=True)
-    container7_3.write("Rank 2")
+    container7_3.write(f"Rank {0+3}")
     container7_3.write(f"**{top_3_students.iloc[2]['Name']}**")   
     container7_3.write(f"**{top_3_students.iloc[2]['Percentage']}**")
 
 with col8:
     container8_1 = st.container(border=True)
-    container8_1.write("Rank 18")
+    container8_1.write(f"Rank {numOfStudents - 2}")
     container8_1.write(f"**{bottom_3_students.iloc[2]['Name']}**")   
     container8_1.write(f"**{bottom_3_students.iloc[2]['Percentage']}**")
 
     container8_2 = st.container(border=True)
-    container8_2.write("Rank 19")
+    container8_2.write(f"Rank {numOfStudents - 1}")
     container8_2.write(f"**{bottom_3_students.iloc[1]['Name']}**")   
     container8_2.write(f"**{bottom_3_students.iloc[1]['Percentage']}**")
 
     container8_3 = st.container(border=True)
-    container8_3.write("Rank 20")
+    container8_3.write(f"Rank {numOfStudents}")
     container8_3.write(f"**{bottom_3_students.iloc[0]['Name']}**")   
     container8_3.write(f"**{bottom_3_students.iloc[0]['Percentage']}**")
 
