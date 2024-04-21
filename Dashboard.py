@@ -9,7 +9,7 @@ st.set_page_config(page_title="VVS", layout="wide", initial_sidebar_state="colla
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-df = pd.read_csv("students.csv")
+df = pd.read_csv("Student.csv")
 specified_columns = ['Name', 'Language', 'English', 'Maths', 'Science', 'Social', 'Percentage', 'Result',  'Gender', 'Section',]
 new_df = df[specified_columns].copy()
 
@@ -153,7 +153,7 @@ def barChart(lan):
              labels={'Pass Count': 'Pass Count', 'Section': 'Section'},
              color='Section',
              color_discrete_sequence = colors)
-    fig.update_layout(yaxis=dict(range=[0, 20]))
+    fig.update_layout(yaxis=dict(range=[0, 40]))
 
     st.plotly_chart(fig, use_container_width=True)
 

@@ -8,7 +8,7 @@ st.set_page_config(page_title="VVS", layout="wide", initial_sidebar_state="colla
 with open('styleB.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-df = pd.read_csv("./students.csv")
+df = pd.read_csv("./Student.csv")
 section_b = df[df['Section'] == 'B']
 specified_columns = ['Name', 'Language', 'English', 'Maths', 'Science', 'Social', 'Percentage', 'Result',  'Gender']
 new_df = section_b[specified_columns].copy()
