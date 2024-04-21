@@ -230,3 +230,4 @@ with st.expander('Student Details'):
 
 csv = new_df.to_csv(index=False).encode('utf-8')
 st.download_button('Download Student Data', data=csv, file_name="StudentData.csv", mime="text/csv")
+
