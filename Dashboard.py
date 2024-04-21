@@ -40,7 +40,7 @@ col1, col2 = st.columns([1, 2], gap="medium")
 
 with col1:
     st.subheader("Overall Results")
-    fig = px.pie(values=result_counts.values, names=result_counts.index, hole=0.5)
+    fig = px.pie(values=result_counts.values, names=result_counts.index, hole=0.5, color_discrete_sequence=['#F6995C', '#FDFFAB'])
     fig.update_traces(text = result_counts.index, textposition="outside")
     st.plotly_chart(fig, use_container_width=True)
 
@@ -142,9 +142,17 @@ def barChart(lan):
     pass_count = pass_sub.groupby('Section').size()
     sections = ['A', 'B']
     pass_count = pass_count.reindex(sections, fill_value=0).reset_index(name='Pass Count')
+    if pass_count.iloc[0]['Pass Count'] > pass_count.iloc[1]['Pass Count']:
+        colors = ['#5463FF', '#FF6B6B']
+    elif pass_count.iloc[0]['Pass Count'] < pass_count.iloc[1]['Pass Count']:
+        colors = ['#FF6B6B', '#5463FF']
+    else:
+        colors = ['#6BCB77', '#6BCB77']
     fig = px.bar(pass_count, x='Section', y='Pass Count', 
              title=f'{lan}',
-             labels={'Pass Count': 'Pass Count', 'Section': 'Section'})
+             labels={'Pass Count': 'Pass Count', 'Section': 'Section'},
+             color='Section',
+             color_discrete_sequence = colors)
     fig.update_layout(yaxis=dict(range=[0, 20]))
 
     st.plotly_chart(fig, use_container_width=True)
