@@ -141,33 +141,51 @@ students_40_below = section_b[section_b['Percentage'] < 40]
 num_students_40_below = len(students_40_below)
 
 # Display the grades in each column
-for i in col3list:
-    with i:
-        container = st.container(border=True)
+# for i in col3list:
+#     with i:
+#         container = st.container(border=True)
 
-        if i is col3_1:
-            container.write("**S Grade**")
-            container.write(f"**{num_students_90_above}**")
+#         if i is col3_1:
+#             container.write("**S Grade**")
+#             container.write(f"**{num_students_90_above}**")
 
-        if i is col3_2:
-            container.write("**A Grade**")
-            container.write(f"**{num_students_80_above}**")
+#         if i is col3_2:
+#             container.write("**A Grade**")
+#             container.write(f"**{num_students_80_above}**")
 
-        if i is col3_3:
-            container.write("**B Grade**")
-            container.write(f"**{num_students_70_above}**")
+#         if i is col3_3:
+#             container.write("**B Grade**")
+#             container.write(f"**{num_students_70_above}**")
 
-        if i is col3_4:
-            container.write("**C Grade**")
-            container.write(f"**{num_students_60_above}**")
+#         if i is col3_4:
+#             container.write("**C Grade**")
+#             container.write(f"**{num_students_60_above}**")
 
-        if i is col3_5:
-            container.write("**D Grade**")
-            container.write(f"**{num_students_40_above}**")
+#         if i is col3_5:
+#             container.write("**D Grade**")
+#             container.write(f"**{num_students_40_above}**")
 
-        if i is col3_6:
-            container.write("**X Grade**")
-            container.write(f"**{num_students_40_below}**")
+#         if i is col3_6:
+#             container.write("**X Grade**")
+#             container.write(f"**{num_students_40_below}**")
+
+st.text("")
+st.text("")
+
+
+dfg = pd.DataFrame(
+    [
+        { "Grade" : "S", "Number of Students": num_students_90_above},
+        { "Grade" : "A", "Number of Students": num_students_80_above},
+        { "Grade" : "B", "Number of Students": num_students_70_above},
+        { "Grade" : "C", "Number of Students": num_students_60_above},
+        { "Grade" : "D", "Number of Students": num_students_40_above},
+        { "Grade" : "X", "Number of Students": num_students_40_below}
+
+    ]
+)
+
+st.dataframe(dfg, use_container_width=True, hide_index=True)
 
 st.text("")
 st.text("")
@@ -258,7 +276,8 @@ with col6:
     container6_3.write(f"**{bottom_3_students.iloc[0]['Percentage']}**")
 
 with st.expander('Student Details'):
-    st.write(new_df.style.background_gradient(cmap="Blues"))
+    # st.write(new_df.style.background_gradient(cmap="Blues"))
+    st.dataframe(new_df, use_container_width=True, hide_index=True)
 
 csv = new_df.to_csv(index=False).encode('utf-8')
 st.download_button('Download Section B Student Data', data=csv, file_name="StudentData_B.csv", mime="text/csv")

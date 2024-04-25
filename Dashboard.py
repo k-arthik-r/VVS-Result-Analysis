@@ -74,8 +74,8 @@ with col2:
 
 st.subheader("Overall Grades")
 
-col3_1, col3_2, col3_3, col3_4, col3_5, col3_6 = st.columns((6))
-col3list = [col3_1, col3_2, col3_3, col3_4, col3_5, col3_6]
+# col3_1, col3_2, col3_3, col3_4, col3_5, col3_6 = st.columns((6))
+# col3list = [col3_1, col3_2, col3_3, col3_4, col3_5, col3_6]
 
 students_90_above = df[df['Percentage'] >= 90]
 num_students_90_above = len(students_90_above)
@@ -96,34 +96,54 @@ students_40_below = df[df['Percentage'] < 40]
 num_students_40_below = len(students_40_below)
 
 
-for i in col3list:
-    with i:
-        container = st.container(border=True)
+# for i in col3list:
+#     with i:
+#         container = st.container(border=True)
 
-        if i is col3_1:
-            container.write("**S Grade**")
-            container.write(f"**{num_students_90_above}**")
+#         if i is col3_1:
+#             container.write("**S Grade**")
+#             container.write(f"**{num_students_90_above}**")
 
-        if i is col3_2:
-            container.write("**A Grade**")
-            container.write(f"**{num_students_80_above}**")
+#         if i is col3_2:
+#             container.write("**A Grade**")
+#             container.write(f"**{num_students_80_above}**")
 
-        if i is col3_3:
-            container.write("**B Grade**")
-            container.write(f"**{num_students_70_above}**")
+#         if i is col3_3:
+#             container.write("**B Grade**")
+#             container.write(f"**{num_students_70_above}**")
 
-        if i is col3_4:
-            container.write("**C Grade**")
-            container.write(f"**{num_students_60_above}**")
+#         if i is col3_4:
+#             container.write("**C Grade**")
+#             container.write(f"**{num_students_60_above}**")
 
-        if i is col3_5:
-            container.write("**D Grade**")
-            container.write(f"**{num_students_40_above}**")
+#         if i is col3_5:
+#             container.write("**D Grade**")
+#             container.write(f"**{num_students_40_above}**")
 
-        if i is col3_6:
-            container.write("**X Grade**")
-            container.write(f"**{num_students_40_below}**")
+#         if i is col3_6:
+#             container.write("**X Grade**")
+#             container.write(f"**{num_students_40_below}**")
 
+st.text("")
+st.text("")
+
+
+dfg = pd.DataFrame(
+    [
+        { "Grade" : "S", "Number of Students": num_students_90_above},
+        { "Grade" : "A", "Number of Students": num_students_80_above},
+        { "Grade" : "B", "Number of Students": num_students_70_above},
+        { "Grade" : "C", "Number of Students": num_students_60_above},
+        { "Grade" : "D", "Number of Students": num_students_40_above},
+        { "Grade" : "X", "Number of Students": num_students_40_below}
+
+    ]
+)
+
+st.dataframe(dfg, use_container_width=True, hide_index=True)
+
+st.text("")
+st.text("")
 st.text("")
 
 col4= st.columns((1))
@@ -136,6 +156,10 @@ with col4[0]:
     fig_line_section = px.line(avg_scores_melted, x='Subject', y='Average Score', color='Section',
                             labels={'Average Score': 'Average Score', 'Subject': 'Subject', 'Section': 'Section'})
     st.plotly_chart(fig_line_section, use_container_width=True)
+    # st.subheader("Comparison of Average score between Section A and Section B")
+    # avg_scores_pivoted = avg_scores_melted.pivot(index='Subject', columns='Section', values='Average Score')
+    # st.line_chart(avg_scores_pivoted, use_container_width=True,)
+
 
 def barChart(lan):
     pass_sub = df[df['Pass/Fail'] == 'Pass']
@@ -226,7 +250,8 @@ with col8:
     container8_3.write(f"**{bottom_3_students.iloc[0]['Percentage']}**")
 
 with st.expander('Student Details'):
-    st.write(new_df.style.background_gradient(cmap="Blues"))
+    # st.write(new_df.style.background_gradient(cmap="Blues"))
+    st.dataframe(new_df, use_container_width=True, hide_index=True)
 
 csv = new_df.to_csv(index=False).encode('utf-8')
 st.download_button('Download Student Data', data=csv, file_name="StudentData.csv", mime="text/csv")
